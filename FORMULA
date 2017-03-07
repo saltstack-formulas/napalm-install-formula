@@ -1,0 +1,8 @@
+name: napalm-install
+os: RedHat, Debian, Ubuntu, Suse, Gentoo
+os_family: RedHat, Debian, Suse, Gentoo
+version: 201703
+release: 1
+minimum_version: 2016.11
+summary: Formula for installing NAPALM dependencies
+description: Formula for installing the dependencies of the underlying libraries used by NAPALM
