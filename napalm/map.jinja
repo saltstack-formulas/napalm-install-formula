@@ -1,0 +1,18 @@
+{% set map = salt['grains.filter_by']({
+    'Debian': {
+        'ios': ['python-pip', 'libssl-dev', 'libssl-dev', libffi-dev', 'python-dev', 'python-cffi'],
+        'vyos': ['python-pip', 'libssl-dev', 'libssl-dev', libffi-dev', 'python-dev', 'python-cffi'],
+        'junos': ['python-pip', 'libxml2-dev', libxslt1-dev', 'libssl-dev', 'libffi-dev', 'python-dev', 'python-cffi'],
+        'iosxr': ['python-pip', 'libxml2-dev', libssl-dev', 'libssl-dev', libffi-dev', 'python-dev', 'python-cffi'],
+        'panos': ['python-pip', 'libssl-dev', 'libssl-dev', libffi-dev', 'python-dev', 'python-cffi'],
+        'pluribus': ['python-pip', 'libssl-dev', 'libssl-dev', libffi-dev', 'python-dev', 'python-cffi']
+    },
+    'RedHat': {
+        'ios': ['python-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
+        'vyos': ['python-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
+        'iosxr': ['python-pip', 'python-devel', 'libxml2-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
+        'panos': ['python-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
+        'pluribus': ['python-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
+        'junos': ['python-pip', 'python-devel', 'libxml2-devel', 'libxslt-devel', gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
+    }
+}, grain='os_family', merge=salt['pillar.get']('napalm_install:lookup')) %}
