@@ -1,3 +1,4 @@
-napalm_libraries:
-  - napalm-junos
-  - napalm_iosxr
+napalm:
+  install:
+    - napalm_ios
+    - napalm-panos
