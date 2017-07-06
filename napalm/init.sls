@@ -1,3 +1,4 @@
+# Installs NAPALM packages and system dependencies
 {% from "napalm_install/map.jinja" import map with context %}
 
 {%- set napalm_libs = salt.pillar.get('napalm:install', []) -%}
@@ -12,6 +13,8 @@ install_napalm_pkgs:
       - {{ pkg }}
         {% endfor %}
       {% endfor %}
+napalm:
+  pip.installed
 {%- else -%}
 # install invididual packages
 {%- set install_drivers = {'list': []} -%}
@@ -27,6 +30,8 @@ install_napalm_{{ driver }}_pkgs:
       {% for pkg in map[driver] %}
       - {{ pkg }}
       {%- endfor -%}
-  {%- endif -%}
+  {%- endif %}
+napalm-{{ driver }}:
+  pip.installed
 {%- endfor -%}
 {%- endif -%}
