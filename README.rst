@@ -22,6 +22,11 @@ Available states
 
 Install the NAPALM libraries and their system requirements.
 
+Pillar
+======
+
+In the pillar we define a list of the NAPALM drivers to install.
+
 Example Pillar
 ==============
 
