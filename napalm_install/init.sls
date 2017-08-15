@@ -32,6 +32,7 @@ install_napalm_{{ driver }}_pkgs:
       {%- endfor -%}
   {%- endif %}
 napalm-{{ driver }}:
-  pip.installed
+  pip.installed:
+    - upgrade: true
 {%- endfor -%}
 {%- endif -%}
