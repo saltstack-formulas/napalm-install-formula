@@ -1,4 +1,4 @@
 napalm:
   install:
-    - napalm_ios
+    - napalm-ios
     - napalm-panos
