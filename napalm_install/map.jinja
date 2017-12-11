@@ -8,11 +8,11 @@
         'pluribus': ['python-pip', 'libssl-dev', 'libssl-dev', 'libffi-dev', 'python-dev', 'python-cffi']
     },
     'RedHat': {
-        'ios': ['python-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
-        'vyos': ['python-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
-        'junos': ['python-pip', 'python-devel', 'libxml2-devel', 'libxslt-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
-        'iosxr': ['python-pip', 'python-devel', 'libxml2-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
-        'panos': ['python-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
-        'pluribus': ['python-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel']
+        'ios': ['python2-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
+        'vyos': ['python2-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
+        'junos': ['python2-pip', 'python-devel', 'libxml2-devel', 'libxslt-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
+        'iosxr': ['python2-pip', 'python-devel', 'libxml2-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
+        'panos': ['python2-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
+        'pluribus': ['python2-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel']
     }
 }, grain='os_family', merge=salt['pillar.get']('napalm')) %}
