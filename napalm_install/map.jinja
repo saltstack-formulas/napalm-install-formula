@@ -15,4 +15,4 @@
         'panos': ['python2-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel'],
         'pluribus': ['python2-pip', 'python-devel', 'gcc', 'openssl', 'openssl-devel', 'libffi-devel']
     }
-}, grain='os_family', merge=salt['pillar.get']('napalm')) %}
+}, grain='os_family', merge=salt['pillar.get']('napalm:packages')) %}
