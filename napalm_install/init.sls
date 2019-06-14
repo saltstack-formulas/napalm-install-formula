@@ -1,37 +1,28 @@
 # Installs NAPALM packages and system dependencies
-{% from "napalm_install/map.jinja" import map with context %}
+{% from "napalm_install/map.jinja" import pkgs with context %}
 
-{%- set napalm_libs = salt.pillar.get('napalm:install', []) -%}
-
-{%- if 'napalm' in napalm_libs -%}
-# Install the whole lib
-install_napalm_pkgs:
+Install system packages:
   pkg.installed:
     - pkgs:
-      {%- for driver, driver_pkgs in map.iteritems() -%}
-        {% for pkg in driver_pkgs %}
+      {%- for pkg in pkgs %}
       - {{ pkg }}
-        {% endfor %}
-      {% endfor %}
-napalm:
-  pip.installed
-{%- else -%}
-# install invididual packages
-{%- set install_drivers = {'list': []} -%}
-{%- for lib in napalm_libs -%}
-  {%- set driver = lib | replace('napalm-', '') | replace('napalm_', '') -%}
-  {%- do install_drivers['list'].append(driver) -%}
-{%- endfor -%}
-{%- for driver in install_drivers['list'] -%}
-  {%- if driver in map %}
-install_napalm_{{ driver }}_pkgs:
-  pkg.installed:
+      {%- endfor %}
+
+Install NAPALM:
+  pip.installed:
+    - name: napalm{%- if pillar.napalm.get('version') %}=={{ pillar.napalm.version }}{%- endif %}
+    - upgrade: {{ pillar.napalm.get('upgrade', false) }}
+    - require:
+      - pkg: Install system packages
+
+{%- if pillar.napalm.get('additional_drivers') %}
+Install additional drivers:
+  pip.installed:
     - pkgs:
-      {% for pkg in map[driver] %}
+      {%- for pkg in pillar.napalm.additional_drivers %}
       - {{ pkg }}
-      {%- endfor -%}
-  {%- endif %}
-napalm-{{ driver }}:
-  pip.installed
-{%- endfor -%}
-{%- endif -%}
+      {%- endfor %}
+    - upgrade: {{ pillar.napalm.get('upgrade', false) }}
+    - require:
+      - pip: Install NAPALM
+{%- endif %}
